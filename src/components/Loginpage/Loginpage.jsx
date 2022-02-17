@@ -4,6 +4,7 @@ import { Form, Input, Button } from "antd";
 import axios from "axios";
 import "antd/dist/antd.css";
 import "./Loginpage.css";
+import { Navigate } from "react-router";
 
 function LoginPage({ isLoggedIn, setIsLoggedIn }) {
   const [login, setLogin] = useState("");
@@ -34,17 +35,11 @@ function LoginPage({ isLoggedIn, setIsLoggedIn }) {
       })
       .catch(() => alert("Неверные данные!"));
   }
-
-  function quit() {
-    setIsLoggedIn(false);
-  }
+ 
 
   if (isLoggedIn) {
     return (
-      <div>
-        <button onClick={quit}>Выйтит</button>
-        готово
-      </div>
+      <Navigate to="/main"/>
     );
   } else {
     return (
@@ -57,7 +52,7 @@ function LoginPage({ isLoggedIn, setIsLoggedIn }) {
           onFinish={Autorisation}
           className="login__form"
         >
-          <img src={logo} alt="лого" className="login__logo"></img>
+          <img src={logo} alt="logo"></img>
           <h2>Вход</h2>
           <Form.Item
             label="Логин"
