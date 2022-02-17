@@ -1,0 +1,11 @@
+.searching {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 220px 377px;
+  }
+  
+  .searching__heading {
+    padding-bottom: 50px;
+  }
+  

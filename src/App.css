@@ -2,11 +2,5 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin: 0 auto;
-  min-height: 100vh;
-  background: #fff;  
 }
 
-.App-logo {
-  height: 40vmin; 
-}

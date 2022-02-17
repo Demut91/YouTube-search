@@ -16,11 +16,6 @@
 }
 
 .login__button {
-  width: 176px;
-}
-
-.login__logo {
-  width: 88px;
-  height: 88px;
-  margin-bottom: 20px;
+  width: 175px;
+  margin-top: 20px;
 }
