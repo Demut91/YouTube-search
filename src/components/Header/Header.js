@@ -12,11 +12,10 @@ function Header({ quit }) {
       <div className="header__container">
         <img src={logo} alt="логотип" className="header__logo"></img>
         <Menu          
-          mode="horizontal"
-          style={{ border: "none" }}
+          mode="horizontal"         
         >
           <Menu.Item key="search">
-            <NavLink to="/main">
+            <NavLink to="/">
               Поиск
             </NavLink>
           </Menu.Item>

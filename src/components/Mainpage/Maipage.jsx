@@ -12,10 +12,11 @@ function Mainpage({ isLoggedIn, quit }) {
     return (
       <>
         <Header quit={quit} />
+
         <Searching/>
       </>
     );
-  } else return <Navigate to="/" />;
+  } else return <Navigate to="/loginpage" />;
 }
 
 export default Mainpage;

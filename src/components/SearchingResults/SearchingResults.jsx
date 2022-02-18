@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "./SearchingResults.css";
+import Videos from "../Videos/Videos";
 
 import {
   BarsOutlined,
@@ -10,8 +11,15 @@ import {
 import { Input } from "antd";
 const { Search } = Input;
 
-function Searchingresults({ search, totalresults, inputValue, handleChange }) {
-  const [grid, setGrid] = useState(true);
+function Searchingresults({
+  search,
+  totalresults,
+  inputValue,
+  handleChange,
+  videos,
+}) {
+  const [grid, setGrid] = useState(false);
+  
 
   function makeGrid() {
     setGrid(true);
@@ -39,6 +47,7 @@ function Searchingresults({ search, totalresults, inputValue, handleChange }) {
               fontSize: 16,
               color: "#1890ff",
             }}
+            
           />
         </button>
       </div>
@@ -63,7 +72,10 @@ function Searchingresults({ search, totalresults, inputValue, handleChange }) {
             />
           </button>
         </div>
-      </div>
+        </div>
+        <Videos videos={videos} grid={grid} />
+
+      
     </section>
   );
 }
