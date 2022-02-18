@@ -13,12 +13,13 @@
     justify-content: space-between;    
   }
   
-  .searching-results__info,
+  .searching-results__info 
   .searching-results__buttons {
     display: flex;
   }
 
   .searching-results__info {
+    margin-bottom: 20px;
     font-size: 16px;
     line-height: 24px;
   }

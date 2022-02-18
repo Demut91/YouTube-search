@@ -22,33 +22,23 @@ function Searching() {
     if (word.length !== 0) {
       try {
         const res = await axios.get(
-          "https://www.googleapis.com/youtube/v3/search",
-          {
-            params: {
-              q: word,
-              maxResults: 12,
-              part: "snippet",
-              key: KEY,
-            },
-            headers: {},
-          }
+          `https://www.googleapis.com/youtube/v3/search?part=snippet&statistics&maxResults=12&q=${word}&type=video&key=${KEY}`
         );
-        setTotalResults(res.data.pageInfo.totalResults);
-        setVideos(res.data.items);
         setsearchingActive(true);
+        setVideos(res.data.items);
+        setTotalResults(res.data.pageInfo.totalResults);        
+        
       } catch (err) {
         return console.log(err);
       }
     }
   }
 
-  console.log(videos);
-  console.log(totalResults);
-
-  return (
+ return (
     <>
       {searchingActive ? (
         <SearchingResults
+          videos={videos}
           search={search}
           totalResults={totalResults}
           inputValue={inputValue}
