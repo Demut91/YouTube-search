@@ -6,7 +6,8 @@ import SearchingResults from "../SearchingResults/SearchingResults";
 import { Input } from "antd";
 const { Search } = Input;
 
-function Searching() {
+function Searching({ savingQuery }) {
+  
   const [videos, setVideos] = useState([]);
   const [totalResults, setTotalResults] = useState(null);
   const [searchingActive, setsearchingActive] = useState(false);
@@ -16,13 +17,14 @@ function Searching() {
     setInputValue(value);
   }
 
-  const KEY = "AIzaSyCsrVetn7441-l8debFN9YygJ_q_2EemwE";
+  const KEY = "AIzaSyD7Y0TCa1s867DB51jEhNv20ljCQYXFKG4";
 
   async function search(word) {
+    
     if (word.length !== 0) {
       try {
         const res = await axios.get(
-          `https://www.googleapis.com/youtube/v3/search?part=snippet&statistics&maxResults=12&q=${word}&type=video&key=${KEY}`
+          `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=12&q=${word}&type=video&key=${KEY}`
         );
         setsearchingActive(true);
         setVideos(res.data.items);
@@ -34,10 +36,11 @@ function Searching() {
     }
   }
 
- return (
+  return (
     <>
       {searchingActive ? (
         <SearchingResults
+          savingQuery={savingQuery}
           videos={videos}
           search={search}
           totalResults={totalResults}
