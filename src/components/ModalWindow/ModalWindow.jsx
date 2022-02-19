@@ -22,6 +22,7 @@ function ModalWindow({ visible, onCancel, adding, inputValue, savingQuery }) {
       query: inputValue,
       maxResults: 12,
       order: "relevance",
+      name: inputValue
     });
   }, [inputValue, form]);
 

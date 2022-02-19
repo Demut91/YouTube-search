@@ -14,16 +14,16 @@ function Mainpage({ isLoggedIn, login, setIsLoggedIn, queries, setQueries }) {
 
   function quit() {
     setIsLoggedIn(false);
-    localStorage.setItem(`${login}`, JSON.stringify(queries));
+    localStorage.setItem(`${login}`, JSON.stringify(queries));   
   }
 
   if (isLoggedIn) {  
-
     return (
       <>
         <button
-          onClick={() => {
+          onClick={() => {           
             console.log(queries);
+           // localStorage.clear()
           }}
         ></button>
         <Header quit={quit} />

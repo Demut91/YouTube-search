@@ -1,35 +1,30 @@
 import React from "react";
-import { Menu } from "antd";
-import { NavLink} from "react-router-dom";
+import { Menu, Button } from "antd";
+import { NavLink } from "react-router-dom";
 import "./Header.css";
 import logo from "../../img/sibdev-logo.svg";
 
 function Header({ quit }) {
-
   return (
     <header className="header">
       <div className="header__container">
         <img src={logo} alt="логотип" className="header__logo"></img>
-        <Menu          
-          mode="horizontal"         
-        >
+        <Menu mode="horizontal">
           <Menu.Item key="search">
-            <NavLink to="/">
-              Поиск
-            </NavLink>
+            <NavLink to="/">Поиск</NavLink>
           </Menu.Item>
           <Menu.Item key="/">
-            <NavLink to="/">
-              Избранное
-            </NavLink>
+            <NavLink to="/favorites">Избранное</NavLink>
+          </Menu.Item>
+          <Menu.Item key="/fds">
+            <Button className="header__button" onClick={quit}>
+              Выйти
+            </Button>
           </Menu.Item>
         </Menu>
       </div>
-      <div>
-        <button className="header__button" onClick={quit}>Выйти</button>
-      </div>
     </header>
-  )
+  );
 }
 
 export default Header;
