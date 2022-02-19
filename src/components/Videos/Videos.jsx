@@ -3,8 +3,7 @@ import "./Videos.css";
 import { v4 as uuidv4 } from "uuid";
 
 function Videos({ videos, grid }) {
-
- // console.log(videos[1].snippet)
+ 
   return (
     <div className={grid ? "container" : "container__grid"}>
       {videos.map((video) => (

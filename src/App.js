@@ -4,15 +4,11 @@ import LoginPage from './components/Loginpage/Loginpage';
 import {useState} from 'react';
 import {Route, Routes, Navigate} from 'react-router';
 import Mainpage from './components/Mainpage/Maipage';
-import SearchingResults from './components/SearchingResults/SearchingResults';
 
 function App () {
-  const [isLoggedIn, setIsLoggedIn] = useState (true);
-
-
-  function quit() {
-    setIsLoggedIn(false);
-  }
+  const [isLoggedIn, setIsLoggedIn] = useState (false);
+  const [login, setLogin] = useState ('');
+  const [queries, setQueries] = useState ([]);
 
   return (
     <div className="App">
@@ -21,16 +17,26 @@ function App () {
         <Route
           path="/loginpage"
           element={
-            <LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+            <LoginPage
+              isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
+              login={login}
+              setLogin={setLogin}
+              setQueries={setQueries}
+            />
           }
         />
         <Route
-          path="/main"
-          element={<Mainpage isLoggedIn={isLoggedIn} quit={quit}/>}
-        />
-          <Route
-          path="/results"
-          element={<SearchingResults />}
+          path="/searching"
+          element={
+            <Mainpage
+              isLoggedIn={isLoggedIn}
+              login={login}
+              setIsLoggedIn={setIsLoggedIn}
+              queries={queries}
+              setQueries={setQueries}
+            />
+          }
         />
 
       </Routes>

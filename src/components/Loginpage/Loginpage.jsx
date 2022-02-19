@@ -2,12 +2,11 @@ import logo from "../../img/sibdev-logo.svg";
 import { useState } from "react";
 import { Form, Input, Button } from "antd";
 import axios from "axios";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import "./Loginpage.css";
 import { Navigate } from "react-router";
 
-function LoginPage({ isLoggedIn, setIsLoggedIn }) {
-  const [login, setLogin] = useState("");
+function LoginPage({ isLoggedIn, setIsLoggedIn, login, setLogin, setQueries }) {  
   const [password, setPassword] = useState("");
 
   const handleLoginChange = (e) => {
@@ -28,9 +27,10 @@ function LoginPage({ isLoggedIn, setIsLoggedIn }) {
         }
       )
       .then(function (response) {
-        localStorage.setItem("token", response.data.token);
+        console.log("token", response.data.token);
         if (response.status === 200) {
           setIsLoggedIn(true);
+          setQueries(JSON.parse(localStorage.getItem(`${login}`)));
         }
       })
       .catch(() => alert("Неверные данные!"));
@@ -39,7 +39,7 @@ function LoginPage({ isLoggedIn, setIsLoggedIn }) {
 
   if (isLoggedIn) {
     return (
-      <Navigate to="/main"/>
+      <Navigate to="/searching"/>
     );
   } else {
     return (

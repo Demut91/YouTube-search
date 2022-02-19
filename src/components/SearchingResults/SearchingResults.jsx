@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "./SearchingResults.css";
 import Videos from "../Videos/Videos";
+import ModalWindow from "../ModalWindow/ModalWindow";
 
 import {
   BarsOutlined,
@@ -17,17 +18,14 @@ function Searchingresults({
   inputValue,
   handleChange,
   videos,
+  savingQuery
 }) {
-  const [grid, setGrid] = useState(false);
   
 
-  function makeGrid() {
-    setGrid(true);
-  }
+  const [grid, setGrid] = useState(false);
+  const [modal, showModal] = useState(false);
 
-  function makeFlex() {
-    setGrid(false);
-  }
+
 
   return (
     <section className="searching-results">
@@ -44,10 +42,12 @@ function Searchingresults({
         <button className="searching-results__add">
           <HeartOutlined
             style={{
-              fontSize: 16,
+              fontSize: 18,
               color: "#1890ff",
             }}
-            
+            onClick={() => {
+              showModal(true);
+            }}
           />
         </button>
       </div>
@@ -57,14 +57,18 @@ function Searchingresults({
           <p>{totalresults}</p>
         </div>
         <div className="searching-results__buttons">
-          <button className="searching-results__button" onClick={makeGrid}>
+          <button className="searching-results__button" onClick={() => {
+              setGrid(true);
+            }}>
             <BarsOutlined
               style={
                 grid ? { fontSize: 24, color: "#1390E5" } : { fontSize: 24 }
               }
             />
           </button>
-          <button className="searching-results__button" onClick={makeFlex}>
+          <button className="searching-results__button" onClick={() => {
+              setGrid(false);
+            }}>
             <AppstoreOutlined
               style={
                 !grid ? { fontSize: 24, color: "#1390E5" } : { fontSize: 24 }
@@ -74,7 +78,15 @@ function Searchingresults({
         </div>
         </div>
         <Videos videos={videos} grid={grid} />
-
+        <ModalWindow
+        savingQuery={savingQuery}
+          visible={modal}
+          inputValue={inputValue}          
+          onCancel={() => {
+            showModal(false);
+          }}
+          adding={true}
+        />
       
     </section>
   );

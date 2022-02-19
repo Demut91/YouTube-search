@@ -6,7 +6,6 @@ import logo from "../../img/sibdev-logo.svg";
 
 function Header({ quit }) {
 
-
   return (
     <header className="header">
       <div className="header__container">
