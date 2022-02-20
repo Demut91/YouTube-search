@@ -17,5 +17,9 @@
 }
 
 .header__button {
+  outline: none;
   border: none;
+  cursor: pointer;
+  background: transparent;
+  color: #1390E5;
 }

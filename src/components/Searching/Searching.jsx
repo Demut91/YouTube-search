@@ -6,8 +6,7 @@ import SearchingResults from "../SearchingResults/SearchingResults";
 import { Input } from "antd";
 const { Search } = Input;
 
-function Searching({ savingQuery,  modal,
-  showModal }) {
+function Searching({ savingQuery }) {
   
   const [videos, setVideos] = useState([]);
   const [totalResults, setTotalResults] = useState(null);
@@ -47,8 +46,6 @@ function Searching({ savingQuery,  modal,
           totalResults={totalResults}
           inputValue={inputValue}
           handleChange={handleChange}
-          modal={modal}
-          showModal={showModal}
         />
       ) : (
         <div className="searching">
