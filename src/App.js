@@ -8,11 +8,17 @@ import Favorites from './components/Favorites/Favorites';
 
 function App () {
   const [isLoggedIn, setIsLoggedIn] = useState (true);
-  const [login, setLogin] = useState ('Zaxar');
+  const [login, setLogin] = useState ('');
   const [queries, setQueries] = useState ([
     {query: 'gojira', name: 'gojira', order: 'relevance', maxResults: 19},
     {query: 'mastodon', name: 'mastodon', order: 'relevance', maxResults: 12},
   ]);
+  const [modal, showModal] = useState (false);
+
+  function quit() {
+    setIsLoggedIn(false);
+    localStorage.setItem(`${login}`, JSON.stringify(queries));
+  }
 
   return (
     <div className="App">
@@ -34,15 +40,27 @@ function App () {
           path="/main"
           element={
             <Mainpage
-              isLoggedIn={isLoggedIn}
-              login={login}
-              setIsLoggedIn={setIsLoggedIn}
+              isLoggedIn={isLoggedIn}             
               queries={queries}
               setQueries={setQueries}
+              modal={modal}
+              showModal={showModal}
+              quit={quit}
             />
           }
         />
-        <Route path="/favorites" element={<Favorites queries={queries} setQueries={setQueries}/>} />
+        <Route
+          path="/favorites"
+          element={
+            <Favorites
+              queries={queries}
+              setQueries={setQueries}
+              modal={modal}
+              showModal={showModal}
+              quit={quit}
+            />
+          }
+        />
 
       </Routes>
 

@@ -13,18 +13,28 @@ import {
 
 const { Option } = Select;
 
-function ModalWindow({ visible, onCancel, adding, inputValue, savingQuery }) {
+function ModalWindow({
+  visible,
+  onCancel,
+  adding,
+  inputValue,
+  savingQuery,
+  params,
+}) {
   const [form] = Form.useForm();
   const [sortCount, setSortCount] = useState(12);
 
   useEffect(() => {
-    form.setFieldsValue({
-      query: inputValue,
-      maxResults: 12,
-      order: "relevance",
-      name: inputValue
-    });
-  }, [inputValue, form]);
+    let defaultParams = params
+      ? params
+      : {
+          maxResults: 12,
+          query: inputValue,
+          order: "relevance",
+          name: inputValue,
+        };
+    form.setFieldsValue(defaultParams);
+  }, [params, inputValue, form]);
 
   function sortCountOnChange(value) {
     setSortCount(value);
@@ -32,6 +42,7 @@ function ModalWindow({ visible, onCancel, adding, inputValue, savingQuery }) {
 
   return (
     <Modal
+      params={params}
       visible={visible}
       title={adding ? "Сохранить запрос" : "Изменить запрос"}
       okText={adding ? "Сохранить" : "Изменить"}
