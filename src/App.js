@@ -7,17 +7,14 @@ import Mainpage from './components/Mainpage/Maipage';
 import Favorites from './components/Favorites/Favorites';
 
 function App () {
-  const [isLoggedIn, setIsLoggedIn] = useState (true);
+  const [isLoggedIn, setIsLoggedIn] = useState (false);
   const [login, setLogin] = useState ('');
-  const [queries, setQueries] = useState ([
-    {query: 'gojira', name: 'gojira', order: 'relevance', maxResults: 19},
-    {query: 'mastodon', name: 'mastodon', order: 'relevance', maxResults: 12},
-  ]);
+  const [queries, setQueries] = useState ([]);
   const [modal, showModal] = useState (false);
 
-  function quit() {
-    setIsLoggedIn(false);
-    localStorage.setItem(`${login}`, JSON.stringify(queries));
+  function quit () {
+    setIsLoggedIn (false);
+    localStorage.setItem (`${login}`, JSON.stringify (queries));
   }
 
   return (
@@ -40,7 +37,7 @@ function App () {
           path="/main"
           element={
             <Mainpage
-              isLoggedIn={isLoggedIn}             
+              isLoggedIn={isLoggedIn}
               queries={queries}
               setQueries={setQueries}
               modal={modal}

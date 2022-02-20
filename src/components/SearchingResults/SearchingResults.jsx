@@ -20,14 +20,9 @@ function Searchingresults({
   videos,
   savingQuery,
   modal,
-  showModal
+  showModal,
 }) {
-  
-
   const [grid, setGrid] = useState(false);
-  
-
-
 
   return (
     <section className="searching-results">
@@ -59,18 +54,24 @@ function Searchingresults({
           <p>{totalresults}</p>
         </div>
         <div className="searching-results__buttons">
-          <button className="searching-results__button" onClick={() => {
+          <button
+            className="searching-results__button"
+            onClick={() => {
               setGrid(true);
-            }}>
+            }}
+          >
             <BarsOutlined
               style={
                 grid ? { fontSize: 24, color: "#1390E5" } : { fontSize: 24 }
               }
             />
           </button>
-          <button className="searching-results__button" onClick={() => {
+          <button
+            className="searching-results__button"
+            onClick={() => {
               setGrid(false);
-            }}>
+            }}
+          >
             <AppstoreOutlined
               style={
                 !grid ? { fontSize: 24, color: "#1390E5" } : { fontSize: 24 }
@@ -78,18 +79,17 @@ function Searchingresults({
             />
           </button>
         </div>
-        </div>
-        <Videos videos={videos} grid={grid} />
-        <ModalWindow
+      </div>
+      <Videos videos={videos} grid={grid} />
+      <ModalWindow
         savingQuery={savingQuery}
-          visible={modal}
-          inputValue={inputValue}          
-          onCancel={() => {
-            showModal(false);
-          }}
-          adding={true}
-        />
-      
+        visible={modal}
+        inputValue={inputValue}
+        onCancel={() => {
+          showModal(false);
+        }}
+        adding={true}
+      />
     </section>
   );
 }

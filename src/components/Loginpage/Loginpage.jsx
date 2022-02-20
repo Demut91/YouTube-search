@@ -36,7 +36,9 @@ function LoginPage({ isLoggedIn, setIsLoggedIn, login, setLogin, setQueries }) {
           } else setQueries(queryes);
         }
       })
-      .catch(() => alert("Введены неверные данные или не активирован демо сервер"));
+      .catch(() =>
+        alert("Введены неверные данные или не активирован демо сервер")
+      );
   }
 
   if (isLoggedIn) {

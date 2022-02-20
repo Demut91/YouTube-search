@@ -20,12 +20,12 @@ function Mainpage({
   if (isLoggedIn) {
     return (
       <>
-        <button
+        {/* <button
           onClick={() => {
             console.log(queries);
             // localStorage.clear()
           }}
-        ></button>
+        ></button> */}
         <Header quit={quit} />
         <Searching
           savingQuery={savingQuery}
