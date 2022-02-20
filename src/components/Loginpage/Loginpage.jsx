@@ -42,7 +42,9 @@ function LoginPage({ isLoggedIn, setIsLoggedIn, login, setLogin, setQueries }) {
   }
 
   if (isLoggedIn) {
-    return <Navigate to="/main" />;
+    return (
+      <Navigate to="/searching"/>
+    );
   } else {
     return (
       <div className="login">

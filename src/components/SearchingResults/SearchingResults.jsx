@@ -24,7 +24,7 @@ function Searchingresults({
 }) {
   const [grid, setGrid] = useState(false);
 
-  return (
+   return (
     <section className="searching-results">
       <h1 className="searching-results__heading">Поиск видео</h1>
       <Search

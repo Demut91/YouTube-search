@@ -43,8 +43,6 @@ function Searching({ savingQuery, modal, showModal }) {
           totalResults={totalResults}
           inputValue={inputValue}
           handleChange={handleChange}
-          modal={modal}
-          showModal={showModal}
         />
       ) : (
         <div className="searching">
