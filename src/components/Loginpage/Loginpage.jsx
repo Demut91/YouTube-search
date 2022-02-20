@@ -6,7 +6,7 @@ import "antd/dist/antd.min.css";
 import "./Loginpage.css";
 import { Navigate } from "react-router";
 
-function LoginPage({ isLoggedIn, setIsLoggedIn, login, setLogin, setQueries }) {  
+function LoginPage({ isLoggedIn, setIsLoggedIn, login, setLogin, setQueries }) {
   const [password, setPassword] = useState("");
 
   const handleLoginChange = (e) => {
@@ -30,17 +30,17 @@ function LoginPage({ isLoggedIn, setIsLoggedIn, login, setLogin, setQueries }) {
         console.log("token", response.data.token);
         if (response.status === 200) {
           setIsLoggedIn(true);
-          setQueries(JSON.parse(localStorage.getItem(`${login}`)));
+          let queryes = JSON.parse(localStorage.getItem(`${login}`));
+          if (queryes === null) {
+            setQueries([]);
+          } else setQueries(queryes);
         }
       })
-      .catch(() => alert("Неверные данные!"));
+      .catch(() => alert("Введены неверные данные или не активирован демо сервер"));
   }
- 
 
   if (isLoggedIn) {
-    return (
-      <Navigate to="/searching"/>
-    );
+    return <Navigate to="/main" />;
   } else {
     return (
       <div className="login">

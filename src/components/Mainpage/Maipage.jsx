@@ -3,31 +3,35 @@ import Header from "../Header/Header";
 import { Navigate } from "react-router";
 import Searching from "../Searching/Searching";
 
-function Mainpage({ isLoggedIn, login, setIsLoggedIn, queries, setQueries }) {
-  
-
+function Mainpage({
+  isLoggedIn,
+  queries,
+  setQueries,
+  modal,
+  showModal,
+  quit
+}) {
   function savingQuery(values) {
     let arr = [];
     arr.push(values);
     setQueries([...queries, ...arr]);
   }
 
-  function quit() {
-    setIsLoggedIn(false);
-    localStorage.setItem(`${login}`, JSON.stringify(queries));
-  }
-
-  if (isLoggedIn) {  
-
+  if (isLoggedIn) {
     return (
       <>
         <button
           onClick={() => {
             console.log(queries);
+            // localStorage.clear()
           }}
         ></button>
         <Header quit={quit} />
-        <Searching savingQuery={savingQuery} />
+        <Searching
+          savingQuery={savingQuery}
+          modal={modal}
+          showModal={showModal}
+        />
       </>
     );
   } else return <Navigate to="/loginpage" />;
