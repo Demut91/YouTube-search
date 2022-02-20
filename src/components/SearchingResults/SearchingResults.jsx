@@ -18,14 +18,12 @@ function Searchingresults({
   inputValue,
   handleChange,
   videos,
-  savingQuery,
-  modal,
-  showModal
+  savingQuery
 }) {
   
 
   const [grid, setGrid] = useState(false);
-  
+  const [modal, showModal] = useState(false);
 
 
 

@@ -4,21 +4,11 @@ import LoginPage from './components/Loginpage/Loginpage';
 import {useState} from 'react';
 import {Route, Routes, Navigate} from 'react-router';
 import Mainpage from './components/Mainpage/Maipage';
-import Favorites from './components/Favorites/Favorites';
 
 function App () {
-  const [isLoggedIn, setIsLoggedIn] = useState (true);
+  const [isLoggedIn, setIsLoggedIn] = useState (false);
   const [login, setLogin] = useState ('');
-  const [queries, setQueries] = useState ([
-    {query: 'gojira', name: 'gojira', order: 'relevance', maxResults: 19},
-    {query: 'mastodon', name: 'mastodon', order: 'relevance', maxResults: 12},
-  ]);
-  const [modal, showModal] = useState (false);
-
-  function quit() {
-    setIsLoggedIn(false);
-    localStorage.setItem(`${login}`, JSON.stringify(queries));
-  }
+  const [queries, setQueries] = useState ([]);
 
   return (
     <div className="App">
@@ -37,27 +27,14 @@ function App () {
           }
         />
         <Route
-          path="/main"
+          path="/searching"
           element={
             <Mainpage
-              isLoggedIn={isLoggedIn}             
+              isLoggedIn={isLoggedIn}
+              login={login}
+              setIsLoggedIn={setIsLoggedIn}
               queries={queries}
               setQueries={setQueries}
-              modal={modal}
-              showModal={showModal}
-              quit={quit}
-            />
-          }
-        />
-        <Route
-          path="/favorites"
-          element={
-            <Favorites
-              queries={queries}
-              setQueries={setQueries}
-              modal={modal}
-              showModal={showModal}
-              quit={quit}
             />
           }
         />
