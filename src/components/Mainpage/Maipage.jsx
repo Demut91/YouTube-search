@@ -3,14 +3,7 @@ import Header from "../Header/Header";
 import { Navigate } from "react-router";
 import Searching from "../Searching/Searching";
 
-function Mainpage({
-  isLoggedIn,
-  queries,
-  setQueries,
-  modal,
-  showModal,
-  quit
-}) {
+function Mainpage({ isLoggedIn, queries, setQueries, modal, showModal, quit }) {
   function savingQuery(values) {
     let arr = [];
     arr.push(values);
@@ -20,12 +13,12 @@ function Mainpage({
   if (isLoggedIn) {
     return (
       <>
-        <button
+        {/* <button
           onClick={() => {
             console.log(queries);
             // localStorage.clear()
           }}
-        ></button>
+        ></button> */}
         <Header quit={quit} />
         <Searching
           savingQuery={savingQuery}

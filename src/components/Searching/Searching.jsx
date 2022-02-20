@@ -6,9 +6,7 @@ import SearchingResults from "../SearchingResults/SearchingResults";
 import { Input } from "antd";
 const { Search } = Input;
 
-function Searching({ savingQuery,  modal,
-  showModal }) {
-  
+function Searching({ savingQuery, modal, showModal }) {
   const [videos, setVideos] = useState([]);
   const [totalResults, setTotalResults] = useState(null);
   const [searchingActive, setsearchingActive] = useState(false);
@@ -21,7 +19,6 @@ function Searching({ savingQuery,  modal,
   const KEY = "AIzaSyD7Y0TCa1s867DB51jEhNv20ljCQYXFKG4";
 
   async function search(word) {
-    
     if (word.length !== 0) {
       try {
         const res = await axios.get(
@@ -29,8 +26,7 @@ function Searching({ savingQuery,  modal,
         );
         setsearchingActive(true);
         setVideos(res.data.items);
-        setTotalResults(res.data.pageInfo.totalResults);        
-        
+        setTotalResults(res.data.pageInfo.totalResults);
       } catch (err) {
         return console.log(err);
       }

@@ -16,7 +16,7 @@ function Header({ quit }) {
           <Menu.Item key="/">
             <NavLink to="/favorites">Избранное</NavLink>
           </Menu.Item>
-          <Menu.Item key="/fds">
+          <Menu.Item key="/btn">
             <Button className="header__button" onClick={quit}>
               Выйти
             </Button>
