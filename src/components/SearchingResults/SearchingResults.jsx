@@ -22,7 +22,6 @@ function Searchingresults({
   modal,
   showModal,
 }) {
-  
   const [grid, setGrid] = useState(false);
 
   return (
@@ -51,7 +50,9 @@ function Searchingresults({
       </div>
       <div className="searching-results__container">
         <div className="searching-results__info">
-          <p>{totalResults} видео по запросу "{inputValue}"</p>         
+          <p>
+            {totalResults} видео по запросу "{inputValue}"
+          </p>
         </div>
         <div className="searching-results__buttons">
           <button

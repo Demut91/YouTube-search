@@ -14,7 +14,7 @@ function Favorites({
   KEY,
   setVideos,
   setTotalResults,
-  setInputValue,
+  setInputValue
 }) {
   const [queryParams, setQueryParams] = useState({});
   const navigate = useNavigate();
@@ -52,6 +52,7 @@ function Favorites({
       setInputValue(values.query);
       setVideos(res.data.items);
       setTotalResults(res.data.pageInfo.totalResults);
+      navigate("/main/results");
     } catch (err) {
       return console.log(err);
     }
@@ -66,15 +67,7 @@ function Favorites({
             <li key={uuidv4()} className="favorites-item">
               <p className="favorites-item__title">{query.name}</p>
               <div className="favorites-item__buttons">
-                <Button
-                  onClick={() =>
-                    executionQuery(query).finally(() =>
-                      navigate("/main/results")
-                    )
-                  }
-                >
-                  Выполнить
-                </Button>
+                <Button onClick={() => executionQuery(query)}>Выполнить</Button>
                 <Button onClick={() => handleQueryClick(query)}>
                   Изменить
                 </Button>
