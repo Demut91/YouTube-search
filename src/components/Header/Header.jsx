@@ -11,13 +11,13 @@ function Header({ quit }) {
         <img src={logo} alt="логотип" className="header__logo"></img>
         <Menu mode="horizontal">
           <Menu.Item key="search">
-            <NavLink to="searching">Поиск</NavLink>
+            <NavLink to="/">Поиск</NavLink>
           </Menu.Item>
           <Menu.Item key="favorites">
             <NavLink to="favorites">Избранное</NavLink>
           </Menu.Item>
           <Menu.Item key="loginpage">
-            <Button className="header__button" onClick={quit} to="/loginpage">
+            <Button className="header__button" onClick={quit}>
               Выйти
             </Button>
           </Menu.Item>
