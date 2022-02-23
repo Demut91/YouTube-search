@@ -5,17 +5,14 @@ import {useState} from 'react';
 import {Route, Routes, Navigate} from 'react-router';
 import Mainpage from './components/Mainpage/Maipage';
 import Favorites from './components/Favorites/Favorites';
+import Searching from './components/Searching/Searching';
+import {PrivateRoute} from './components/Routes/PrivateRout';
 
 function App () {
   const [isLoggedIn, setIsLoggedIn] = useState (false);
   const [login, setLogin] = useState ('');
   const [queries, setQueries] = useState ([]);
   const [modal, showModal] = useState (false);
-
-  function quit () {
-    setIsLoggedIn (false);
-    localStorage.setItem (`${login}`, JSON.stringify (queries));
-  }
 
   return (
     <div className="App">
@@ -34,33 +31,39 @@ function App () {
           }
         />
         <Route
-          path="/main"
+          path="main/*"
           element={
-            <Mainpage
-              isLoggedIn={isLoggedIn}
-              queries={queries}
-              setQueries={setQueries}
-              modal={modal}
-              showModal={showModal}
-              quit={quit}
-            />
+            <PrivateRoute isLoggedIn={isLoggedIn}>
+              <Mainpage
+                queries={queries}
+                setQueries={setQueries}
+                modal={modal}
+                showModal={showModal}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+                login={login}
+              />
+            </PrivateRoute>
           }
         />
         <Route
           path="/favorites"
           element={
-            <Favorites
-              queries={queries}
-              setQueries={setQueries}
-              modal={modal}
-              showModal={showModal}
-              quit={quit}
-            />
+            <PrivateRoute isLoggedIn={isLoggedIn}>
+              <Favorites />
+            </PrivateRoute>
           }
         />
-
+        <Route
+          path="/searching"
+          element={
+            <PrivateRoute isLoggedIn={isLoggedIn}>
+              <Searching />
+            </PrivateRoute>
+          }
+        />
+        <Route />
       </Routes>
-
     </div>
   );
 }

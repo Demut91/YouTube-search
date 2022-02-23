@@ -1,15 +1,16 @@
 import React from "react";
 import Header from "../Header/Header";
-import { Navigate } from "react-router";
 import Searching from "../Searching/Searching";
+import { Routes, Route } from "react-router-dom";
+import Favorites from "../Favorites/Favorites";
 
 function Mainpage({
-  isLoggedIn,
   queries,
   setQueries,
   modal,
   showModal,
-  quit
+  setIsLoggedIn,
+  login,
 }) {
   function savingQuery(values) {
     let arr = [];
@@ -17,24 +18,45 @@ function Mainpage({
     setQueries([...queries, ...arr]);
   }
 
-  if (isLoggedIn) {
-    return (
-      <>
-        {/* <button
+  function quit() {
+    setIsLoggedIn(false);
+    localStorage.setItem(`${login}`, JSON.stringify(queries));
+  }
+
+  return (
+    <>
+      {/* <button
           onClick={() => {
             console.log(queries);
-            // localStorage.clear()
+            
           }}
         ></button> */}
-        <Header quit={quit} />
-        <Searching
-          savingQuery={savingQuery}
-          modal={modal}
-          showModal={showModal}
+      <Header quit={quit} />
+      <Routes>
+        <Route
+          path="/searching"
+          element={
+            <Searching
+              savingQuery={savingQuery}
+              modal={modal}
+              showModal={showModal}
+            />
+          }
         />
-      </>
-    );
-  } else return <Navigate to="/loginpage" />;
+        <Route
+          path="/favorites"
+          element={
+            <Favorites
+              queries={queries}
+              setQueries={setQueries}
+              modal={modal}
+              showModal={showModal}
+            />
+          }
+        />
+      </Routes>
+    </>
+  );
 }
 
 export default Mainpage;
