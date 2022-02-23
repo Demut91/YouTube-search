@@ -14,7 +14,7 @@ const { Search } = Input;
 
 function Searchingresults({
   search,
-  totalresults,
+  totalResults,
   inputValue,
   handleChange,
   videos,
@@ -22,6 +22,7 @@ function Searchingresults({
   modal,
   showModal,
 }) {
+  
   const [grid, setGrid] = useState(false);
 
   return (
@@ -50,8 +51,7 @@ function Searchingresults({
       </div>
       <div className="searching-results__container">
         <div className="searching-results__info">
-          <p>Видео по запросу "{inputValue}"</p>
-          <p>{totalresults}</p>
+          <p>{totalResults} видео по запросу "{inputValue}"</p>         
         </div>
         <div className="searching-results__buttons">
           <button

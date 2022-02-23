@@ -7,6 +7,7 @@ import Mainpage from './components/Mainpage/Maipage';
 import Favorites from './components/Favorites/Favorites';
 import Searching from './components/Searching/Searching';
 import {PrivateRoute} from './components/Routes/PrivateRout';
+import Searchingresults from './components/SearchingResults/SearchingResults';
 
 function App () {
   const [isLoggedIn, setIsLoggedIn] = useState (false);
@@ -14,10 +15,17 @@ function App () {
   const [queries, setQueries] = useState ([]);
   const [modal, showModal] = useState (false);
 
+  const [videos, setVideos] = useState ([]);
+  const [totalResults, setTotalResults] = useState (null);
+  const [inputValue, setInputValue] = useState ('');
+
+  const KEY = 'AIzaSyD7Y0TCa1s867DB51jEhNv20ljCQYXFKG4';
+
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Navigate replace to="/loginpage" />} />
+
         <Route
           path="/loginpage"
           element={
@@ -39,9 +47,16 @@ function App () {
                 setQueries={setQueries}
                 modal={modal}
                 showModal={showModal}
+                login={login}
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn={setIsLoggedIn}
-                login={login}
+                totalResults={totalResults}
+                setTotalResults={setTotalResults}
+                inputValue={inputValue}
+                setInputValue={setInputValue}
+                videos={videos}
+                setVideos={setVideos}
+                KEY={KEY}
               />
             </PrivateRoute>
           }
@@ -50,7 +65,15 @@ function App () {
           path="/favorites"
           element={
             <PrivateRoute isLoggedIn={isLoggedIn}>
-              <Favorites />
+              <Favorites
+                setTotalResults={setTotalResults}
+                setInputValue={setInputValue}
+                inputValue={inputValue}
+                videos={videos}
+                totalResults={totalResults}
+                setVideos={setVideos}
+                KEY={KEY}
+              />
             </PrivateRoute>
           }
         />
@@ -58,10 +81,26 @@ function App () {
           path="/searching"
           element={
             <PrivateRoute isLoggedIn={isLoggedIn}>
-              <Searching />
+              <Searching
+                setTotalResults={setTotalResults}
+                setInputValue={setInputValue}
+                inputValue={inputValue}
+                videos={videos}
+                totalResults={totalResults}
+                setVideos={setVideos}
+              />
             </PrivateRoute>
           }
         />
+        <Route
+          path="/results"
+          element={
+            <PrivateRoute isLoggedIn={isLoggedIn}>
+              <Searchingresults inputValue={inputValue}  />
+            </PrivateRoute>
+          }
+        />
+
         <Route />
       </Routes>
     </div>

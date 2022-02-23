@@ -2,10 +2,22 @@ import React, { useState } from "react";
 import { Button } from "antd";
 import { v4 as uuidv4 } from "uuid";
 import "./Favorites.css";
+import axios from "axios";
+import { useNavigate } from "react-router";
 import ModalWindow from "../ModalWindow/ModalWindow";
 
-function Favorites({ queries, setQueries, modal, showModal, quit }) {
+function Favorites({
+  queries,
+  setQueries,
+  modal,
+  showModal,
+  KEY,
+  setVideos,
+  setTotalResults,
+  setInputValue,
+}) {
   const [queryParams, setQueryParams] = useState({});
+  const navigate = useNavigate();
 
   function handleQueryClick(values) {
     showModal(true);
@@ -32,6 +44,19 @@ function Favorites({ queries, setQueries, modal, showModal, quit }) {
     setQueries(queries.filter((el) => el.name !== query.name));
   }
 
+  async function executionQuery(values) {
+    try {
+      const res = await axios.get(
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=${values.maxResults}&q=${values.query}&type=video&order=${values.order}&key=${KEY}`
+      );
+      setInputValue(values.query);
+      setVideos(res.data.items);
+      setTotalResults(res.data.pageInfo.totalResults);
+    } catch (err) {
+      return console.log(err);
+    }
+  }
+
   return (
     <section className="favorites__container">
       <h2 className="favorites__heading">Избранное</h2>
@@ -41,6 +66,15 @@ function Favorites({ queries, setQueries, modal, showModal, quit }) {
             <li key={uuidv4()} className="favorites-item">
               <p className="favorites-item__title">{query.name}</p>
               <div className="favorites-item__buttons">
+                <Button
+                  onClick={() =>
+                    executionQuery(query).finally(() =>
+                      navigate("/main/results")
+                    )
+                  }
+                >
+                  Выполнить
+                </Button>
                 <Button onClick={() => handleQueryClick(query)}>
                   Изменить
                 </Button>
