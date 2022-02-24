@@ -8,7 +8,7 @@ function Videos({ videos, grid }) {
       {videos.map((video) => (
         <div key={uuidv4()} className={grid ? "video" : "video__grid"}>
           <div className={grid ? "videoItem" : "videoItem__grid"}>
-            <iframe
+            {/* <iframe
               title={video.snippet.description}
               className="video-iframe"
               src={`https://www.youtube.com/embed/${video.id.videoId}`}
@@ -16,7 +16,7 @@ function Videos({ videos, grid }) {
               fs="0"
               width="100%"
               height="100%"
-            />
+            /> */}
           </div>
           <div className={grid ? "video__info" : "video__info__grid"}>
             <h4 className="video__heading">{video.snippet.title}</h4>

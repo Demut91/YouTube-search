@@ -14,7 +14,7 @@ function Mainpage({ queries, setQueries, setIsLoggedIn, login }) {
   const [inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
 
-  const KEY = "AIzaSyD7Y0TCa1s867DB51jEhNv20ljCQYXFKG4";
+  const KEY = "AIzaSyCsrVetn7441-l8debFN9YygJ_q_2EemwE";
 
   function handleChange({ target: { value } }) {
     setInputValue(value);
@@ -31,14 +31,23 @@ function Mainpage({ queries, setQueries, setIsLoggedIn, login }) {
     localStorage.setItem(`${login}`, JSON.stringify(queries));
   }
 
-  async function search(word) {
-    if (word.length !== 0) {
+  async function search(values) {
+    if (typeof values === "string") {
+      values = {
+        query: values,
+        name: values,
+        order: "relevance",
+        maxResults: 12,
+      };
+    }
+    if (values.query.length !== 0) {
+      setInputValue(values.query);
       try {
         const res = await axios
           .get(
-            `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=12&q=${word}&type=video&key=${KEY}`
+            `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=${values.maxResults}&q=${values.query}&type=video&order=${values.order}&key=${KEY}`
           )
-          .then(navigate("/main/results"));
+          .then(navigate("/main/results"));       
         setVideos(res.data.items);
         setTotalResults(res.data.pageInfo.totalResults);
       } catch (err) {
@@ -63,11 +72,7 @@ function Mainpage({ queries, setQueries, setIsLoggedIn, login }) {
               setQueries={setQueries}
               modal={modal}
               showModal={showModal}
-              KEY={KEY}
-              setTotalResults={setTotalResults}
-              setInputValue={setInputValue}
-              inputValue={inputValue}
-              setVideos={setVideos}
+              executionQuery={search}
             />
           }
         />
