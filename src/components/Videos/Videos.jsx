@@ -5,7 +5,7 @@ import ReactPlayer from "react-player/youtube";
 
 function Videos({ videos, grid }) {
   function htmlDecode(input) {
-    var doc = new DOMParser().parseFromString(input, "text/html");
+    let doc = new DOMParser().parseFromString(input, "text/html");
     return doc.documentElement.textContent;
   }
   return (
