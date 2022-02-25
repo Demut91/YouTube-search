@@ -47,7 +47,7 @@ function Mainpage({ queries, setQueries, setIsLoggedIn, login }) {
           .get(
             `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=${values.maxResults}&q=${values.query}&type=video&order=${values.order}&key=${KEY}`
           )
-          .then(navigate("/main/results"));       
+          .then(navigate("/main/results"));
         setVideos(res.data.items);
         setTotalResults(res.data.pageInfo.totalResults);
       } catch (err) {
