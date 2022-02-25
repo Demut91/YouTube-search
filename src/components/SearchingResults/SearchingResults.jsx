@@ -20,10 +20,10 @@ function Searchingresults({
   videos,
   savingQuery,
   modal,
-  showModal,
+  showModal
 }) {
   const [grid, setGrid] = useState(false);
-
+  
   return (
     <section className="searching-results">
       <h1 className="searching-results__heading">Поиск видео</h1>
