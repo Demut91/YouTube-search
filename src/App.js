@@ -10,7 +10,7 @@ import {PrivateRoute} from './components/Routes/PrivateRout';
 import Searchingresults from './components/SearchingResults/SearchingResults';
 
 function App () {
-  const [isLoggedIn, setIsLoggedIn] = useState (true);
+  const [isLoggedIn, setIsLoggedIn] = useState (false);
   const [login, setLogin] = useState ('');
   const [queries, setQueries] = useState ([]);
 
